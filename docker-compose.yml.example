@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  app:
+    image: node:20-alpine
+    container_name: ecard-web
+    working_dir: /app
+    ports:
+    - "3000:3000"
+    volumes:
+    - .:/app
+    - /app/node_modules
+    - /app/.next
+    environment:
+    - NODE_ENV=production
+    - NEXT_PUBLIC_EVENT_TITLE=E-CARD
+    - NEXT_PUBLIC_EVENT_DATE=2026-02-26 07:09:00
+    - NEXT_PUBLIC_CARD_FRONT_IMAGE=/images/card-front.png
+    - NEXT_PUBLIC_CARD_BACK_IMAGE=/images/card-back.png
+    - NEXT_PUBLIC_MAP_LINK=https://maps.app.goo.gl/JhBVkAK6c84jbHHW8
+    - NEXT_PUBLIC_PROMPTPAY_ACCOUNT_NAME=Your Name
+    - NEXT_PUBLIC_PROMPTPAY_QR_PATH=/qrcode.jpg
+    command: sh -c "yarn install && yarn build && yarn start"
+    restart: unless-stopped
