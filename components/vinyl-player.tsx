@@ -162,8 +162,8 @@ export const VinylPlayer = forwardRef<VinylPlayerRef, VinylPlayerProps>(
                   </div>
 
                   <div className="flex flex-col min-w-0 flex-1">
-                    <p className="text-xs font-medium text-[#8B4513] truncate">Wedding Music</p>
-                    <p className="text-[10px] text-[#5C4033]/70 truncate">Wedding</p>
+                    <p className="text-xs font-medium text-[#8B4513] truncate">Home Music</p>
+                    <p className="text-[10px] text-[#5C4033]/70 truncate">Music</p>
                   </div>
                 </div>
 
