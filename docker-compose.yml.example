@@ -20,5 +20,5 @@ services:
     - NEXT_PUBLIC_MAP_LINK=https://maps.app.goo.gl/JhBVkAK6c84jbHHW8
     - NEXT_PUBLIC_PROMPTPAY_ACCOUNT_NAME=Your Name
     - NEXT_PUBLIC_PROMPTPAY_QR_PATH=/qrcode.jpg
-    command: sh -c "corepack enable && yarn install && yarn build && yarn start"
+    command: sh -c "corepack enable && yarn start"
     restart: unless-stopped
