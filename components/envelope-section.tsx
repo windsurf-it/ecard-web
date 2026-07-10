@@ -6,27 +6,24 @@ import { decryptBase64 } from '@/lib/utils'
 interface EnvelopeSectionProps {
   onOpen: () => void
   onEnvelopeClick?: () => void
+  encryptedName?: string
 }
 
-export function EnvelopeSection({ onOpen, onEnvelopeClick }: EnvelopeSectionProps) {
+export function EnvelopeSection({ onOpen, onEnvelopeClick, encryptedName }: EnvelopeSectionProps) {
   const [animationStage, setAnimationStage] = useState<'falling' | 'front' | 'flipping' | 'back'>('falling')
   const [isHovered, setIsHovered] = useState(false)
   const [hoverStep, setHoverStep] = useState<0 | 1 | 2 | 3>(0)
   const [cardSlideUp, setCardSlideUp] = useState(false)
   const [guestName, setGuestName] = useState('')
   useEffect(() => {
-    // อ่านค่า name จาก URL query parameter และ decode
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search)
-      const encryptedName = params.get('name')
-      if (encryptedName) {
-        const decodedName = decryptBase64(encryptedName)
-        if (decodedName) {
-          setGuestName(decodedName)
-        }
+    // decode ค่า name ที่ได้จาก route param
+    if (encryptedName) {
+      const decodedName = decryptBase64(encryptedName)
+      if (decodedName) {
+        setGuestName(decodedName)
       }
     }
-  }, [])
+  }, [encryptedName])
 
   useEffect(() => {
     const fallingTimer = setTimeout(() => {
@@ -281,7 +278,11 @@ export function EnvelopeSection({ onOpen, onEnvelopeClick }: EnvelopeSectionProp
                     >
                       <div className="relative">
                         <img
-                          src={process.env.NEXT_PUBLIC_CARD_FRONT_IMAGE || process.env.NEXT_PUBLIC_CARD_BACK_IMAGE || '/images/card-front.png'}
+                          src={
+                            process.env.NEXT_PUBLIC_CARD_FRONT_IMAGE ||
+                            process.env.NEXT_PUBLIC_CARD_BACK_IMAGE ||
+                            '/images/card-front.png'
+                          }
                           alt="Invitation Card"
                           className="w-full max-w-md md:max-w-lg lg:max-w-xl object-contain shadow-2xl rounded-lg select-none"
                           draggable={false}

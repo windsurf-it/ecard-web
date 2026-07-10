@@ -28,7 +28,11 @@ interface FallenLeaf {
   size: number
 }
 
-export default function BodyInvitation() {
+interface BodyInvitationProps {
+  encryptedName?: string
+}
+
+export default function BodyInvitation({ encryptedName }: BodyInvitationProps) {
   const [isOpen, setIsOpen] = useState(false)
   const vinylPlayerRef = useRef<VinylPlayerRef>(null)
   const [fallenLeaves, setFallenLeaves] = useState<FallenLeaf[]>([])
@@ -494,7 +498,11 @@ export default function BodyInvitation() {
       </div>
 
       {!isOpen ? (
-        <EnvelopeSection onOpen={() => setIsOpen(true)} onEnvelopeClick={handleEnvelopeClick} />
+        <EnvelopeSection
+          onOpen={() => setIsOpen(true)}
+          onEnvelopeClick={handleEnvelopeClick}
+          encryptedName={encryptedName}
+        />
       ) : (
         <div className="space-y-0">
           <CardInvitation />

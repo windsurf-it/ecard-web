@@ -13,7 +13,7 @@ export default function CardInvitation() {
   useEffect(() => {
     setIsVisible(true)
 
-    // รับรูปจาก URL query parameter ถ้ามี
+    // รับ cardFront/cardBack จาก URL query parameter ถ้ามี
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search)
       const frontParam = params.get('cardFront')
