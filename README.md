@@ -1,6 +1,7 @@
 # เว็บไซต์การ์ด
 
 #Demo : http://localhost:3000
+#Demo : http://localhost:3000/encryptxxxxxx
 #Demo : http://localhost:3000/api/encrypt?name=ชื่อผู้รับ
 
 ---
