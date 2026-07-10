@@ -1,2 +1,2 @@
-stop.bat
-start.bat
+./stop.bat
+./start.bat
