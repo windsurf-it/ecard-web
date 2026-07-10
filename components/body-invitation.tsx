@@ -9,6 +9,7 @@ import { CoupleSection } from './couple-section'
 
 const MAP_LINK = process.env.NEXT_PUBLIC_MAP_LINK || '#'
 const PROMPTPAY_ACCOUNT_NAME = process.env.NEXT_PUBLIC_PROMPTPAY_ACCOUNT_NAME || 'ใส่ชื่อบัญชีของคุณ'
+const PROMPTPAY_QR_PATH = process.env.NEXT_PUBLIC_PROMPTPAY_QR_PATH
 
 function seededRandom(seed: number) {
   let value = seed
@@ -513,14 +514,16 @@ export default function BodyInvitation({ encryptedName }: BodyInvitationProps) {
 
       <VinylPlayer ref={vinylPlayerRef} isMiniMode={isOpen} />
 
-      <button
-        onClick={() => setShowPromptPayModal(true)}
-        className="flex fixed bottom-14 right-14 md:bottom-6 md:right-14 lg:right-20 z-50 w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full bg-white/90 hover:bg-white backdrop-blur-sm shadow-lg border-2 border-[#0066CC]/30 hover:border-[#0066CC] transition-all duration-300 items-center justify-center group hover:scale-110"
-        aria-label="เปิด PromptPay QR Code"
-        title="PromptPay"
-      >
-        <img src="/icon-pp.png" alt="PromptPay" className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 object-contain" />
-      </button>
+      {PROMPTPAY_QR_PATH && (
+        <button
+          onClick={() => setShowPromptPayModal(true)}
+          className="flex fixed bottom-14 right-14 md:bottom-6 md:right-14 lg:right-20 z-50 w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full bg-white/90 hover:bg-white backdrop-blur-sm shadow-lg border-2 border-[#0066CC]/30 hover:border-[#0066CC] transition-all duration-300 items-center justify-center group hover:scale-110"
+          aria-label="เปิด PromptPay QR Code"
+          title="PromptPay"
+        >
+          <img src="/icon-pp.png" alt="PromptPay" className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 object-contain" />
+        </button>
+      )}
 
       <a
         href={MAP_LINK}
@@ -539,7 +542,7 @@ export default function BodyInvitation({ encryptedName }: BodyInvitationProps) {
         </svg>
       </a>
 
-      {showPromptPayModal && (
+      {PROMPTPAY_QR_PATH && showPromptPayModal && (
         <div
           className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 animate-fadeIn"
           onClick={() => setShowPromptPayModal(false)}
@@ -564,11 +567,11 @@ export default function BodyInvitation({ encryptedName }: BodyInvitationProps) {
                   <p className="text-[#6b7280] text-sm text-center px-4">
                     ใส่รูป QR Code ของคุณ
                     <br />
-                    (public/qrcode.jpg)
+                    (public{PROMPTPAY_QR_PATH})
                   </p>
                 )}
                 <img
-                  src="/qrcode.jpg"
+                  src={PROMPTPAY_QR_PATH}
                   alt="PromptPay QR Code"
                   className={`absolute inset-0 w-full h-full object-contain ${promptPayQrLoaded ? 'opacity-100' : 'opacity-0'}`}
                   onLoad={() => setPromptPayQrLoaded(true)}
