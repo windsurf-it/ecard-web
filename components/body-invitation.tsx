@@ -396,7 +396,7 @@ export default function BodyInvitation() {
         </div>
 
         <div className="absolute top-0 left-0 w-full h-2/5 bg-gradient-to-b from-[#FFE5F1]/40 via-[#FFF0F8]/25 to-transparent" />
-        <div className="absolute bottom-0 right-0 w-3/5 h-2/5 bg-gradient-to-t from-[#E8F8F0]/35 via-[#F0FDF8]/20 to-transparent" />
+        <div className="absolute bottom-0 right-0 w-5/5 h-2/5 bg-gradient-to-t from-[#E8F8F0]/35 via-[#F0FDF8]/20 to-transparent" />
 
         <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-gradient-radial from-[#FFB6C1]/12 via-[#FFE4E1]/6 to-transparent blur-3xl opacity-60" />
         <div className="absolute bottom-1/3 left-1/4 w-[400px] h-[400px] rounded-full bg-gradient-radial from-[#C8E6D5]/15 via-[#E8F5ED]/8 to-transparent blur-3xl opacity-50" />
