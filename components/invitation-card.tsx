@@ -6,7 +6,7 @@ import Image from 'next/image'
 export function InvitationCard() {
   const [isVisible, setIsVisible] = useState(false)
   const [cardFront, setCardFront] = useState<string>(
-    process.env.NEXT_PUBLIC_CARD_FRONT_IMAGE || '/images/card-front.png'
+    process.env.NEXT_PUBLIC_CARD_FRONT_IMAGE || process.env.NEXT_PUBLIC_CARD_BACK_IMAGE || '/images/card-front.png'
   )
   const [cardBack, setCardBack] = useState<string>(process.env.NEXT_PUBLIC_CARD_BACK_IMAGE || '/images/card-back.png')
 
@@ -37,7 +37,7 @@ export function InvitationCard() {
               <div className="relative w-full flex items-center justify-center min-h-[400px]">
                 <Image
                   src={cardFront}
-                  alt="Housewarming Invitation Card Front"
+                  alt="Invitation Card Front"
                   width={800}
                   height={1131}
                   className="w-full h-auto max-w-full object-contain rounded-2xl"
@@ -53,12 +53,14 @@ export function InvitationCard() {
               <div className="relative w-full flex items-center justify-center min-h-[400px]">
                 <Image
                   src={cardBack}
-                  alt="Housewarming Invitation Card Back"
+                  alt="Invitation Card Back"
                   width={800}
                   height={1131}
-                  className="w-full h-auto max-w-full object-contain rounded-2xl"
+                  className="w-full h-auto max-w-full object-contain rounded-2xl select-none"
                   priority
                   style={{ maxHeight: '90vh' }}
+                  draggable={false}
+                  onContextMenu={(e) => e.preventDefault()}
                 />
               </div>
             </div>

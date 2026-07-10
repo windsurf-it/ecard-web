@@ -116,8 +116,10 @@ export function EnvelopeSection({ onOpen, onEnvelopeClick }: EnvelopeSectionProp
                 <div className="relative w-full h-full rounded-lg overflow-hidden shadow-2xl">
                   <img
                     src="/images/mail-invitation.png"
-                    alt="Housewarming Invitation Envelope"
-                    className="w-full h-full object-cover"
+                    alt="Invitation Envelope"
+                    className="w-full h-full object-cover select-none"
+                    draggable={false}
+                    onContextMenu={(e) => e.preventDefault()}
                   />
                   {}
                   {animationStage === 'front' && (
@@ -251,7 +253,9 @@ export function EnvelopeSection({ onOpen, onEnvelopeClick }: EnvelopeSectionProp
                         <img
                           src="/krang-2.png"
                           alt="Heart Wax Seal"
-                          className="w-14 h-14 md:w-16 md:h-16 lg:w-18 lg:h-18 object-contain"
+                          className="w-14 h-14 md:w-16 md:h-16 lg:w-18 lg:h-18 object-contain select-none"
+                          draggable={false}
+                          onContextMenu={(e) => e.preventDefault()}
                         />
                       </div>
                     </div>
@@ -277,9 +281,11 @@ export function EnvelopeSection({ onOpen, onEnvelopeClick }: EnvelopeSectionProp
                     >
                       <div className="relative">
                         <img
-                          src={process.env.NEXT_PUBLIC_CARD_FRONT_IMAGE || '/images/card-front.png'}
-                          alt="Housewarming Invitation Card"
-                          className="w-full max-w-md md:max-w-lg lg:max-w-xl object-contain shadow-2xl rounded-lg"
+                          src={process.env.NEXT_PUBLIC_CARD_FRONT_IMAGE || process.env.NEXT_PUBLIC_CARD_BACK_IMAGE || '/images/card-front.png'}
+                          alt="Invitation Card"
+                          className="w-full max-w-md md:max-w-lg lg:max-w-xl object-contain shadow-2xl rounded-lg select-none"
+                          draggable={false}
+                          onContextMenu={(e) => e.preventDefault()}
                           style={{
                             filter: cardSlideUp
                               ? 'drop-shadow(0 20px 40px rgba(0,0,0,0.1))'

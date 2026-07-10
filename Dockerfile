@@ -3,15 +3,15 @@ FROM node:20-alpine AS base
 FROM base AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
-COPY package.json pnpm-lock.yaml* yarn.lock* package-lock.json* ./
-RUN corepack enable pnpm && pnpm install --frozen-lockfile || npm ci
+COPY package.json yarn.lock* package-lock.json* ./
+RUN corepack enable && yarn install --frozen-lockfile
 
 FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
-RUN corepack enable pnpm && pnpm build || npm run build
+RUN corepack enable && yarn build
 
 FROM base AS runner
 WORKDIR /app
