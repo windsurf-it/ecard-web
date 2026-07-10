@@ -1,9 +1,9 @@
-import CardInvitation from "@/components/card-invitation"
+import BodyInvitation from "@/components/body-invitation"
 
 export default function Page() {
   return (
     <>
-      <CardInvitation />
+      <BodyInvitation />
     </>
   )
 }
