@@ -80,3 +80,12 @@ export function decryptBase64(input: string): string {
     return ''
   }
 }
+
+// LZ.decompressFromEncodedURIComponent ไม่ validate input จริงๆ - โค้ดที่ถูกแก้ไข/เดามั่วบางแบบ
+// (เช่น เติมตัวเลขนำหน้า) ก็ยัง "decompress" ออกมาเป็น string เพี้ยนๆ (บางครั้งมีอักษรจีนปน) แทนที่จะ error
+// เลยต้อง verify ด้วยการ re-encode กลับไปเทียบกับ code เดิม ถ้าไม่ตรงแปลว่า code ถูกแก้ไข/ไม่ใช่ของจริง
+export function isValidEncryptedName(code: string): boolean {
+  const decoded = decryptBase64(code)
+  if (!decoded) return false
+  return encryptBase64(decoded) === code
+}
