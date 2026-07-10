@@ -7,9 +7,10 @@ interface EnvelopeSectionProps {
   onOpen: () => void
   onEnvelopeClick?: () => void
   encryptedName?: string
+  cardImage: string
 }
 
-export function EnvelopeSection({ onOpen, onEnvelopeClick, encryptedName }: EnvelopeSectionProps) {
+export function EnvelopeSection({ onOpen, onEnvelopeClick, encryptedName, cardImage }: EnvelopeSectionProps) {
   const [animationStage, setAnimationStage] = useState<'falling' | 'front' | 'flipping' | 'back'>('falling')
   const [isHovered, setIsHovered] = useState(false)
   const [hoverStep, setHoverStep] = useState<0 | 1 | 2 | 3>(0)
@@ -278,11 +279,7 @@ export function EnvelopeSection({ onOpen, onEnvelopeClick, encryptedName }: Enve
                     >
                       <div className="relative">
                         <img
-                          src={
-                            process.env.NEXT_PUBLIC_CARD_FRONT_IMAGE ||
-                            process.env.NEXT_PUBLIC_CARD_BACK_IMAGE ||
-                            '/images/card-front.png'
-                          }
+                          src={cardImage}
                           alt="Invitation Card"
                           className="w-full max-w-md md:max-w-lg lg:max-w-xl object-contain shadow-2xl rounded-lg select-none"
                           draggable={false}

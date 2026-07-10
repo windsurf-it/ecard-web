@@ -6,10 +6,7 @@ import CardInvitation from './card-invitation'
 import { GallerySection } from './gallery-section'
 import { VinylPlayer, type VinylPlayerRef } from './vinyl-player'
 import { CoupleSection } from './couple-section'
-
-const MAP_LINK = process.env.NEXT_PUBLIC_MAP_LINK || '#'
-const PROMPTPAY_ACCOUNT_NAME = process.env.NEXT_PUBLIC_PROMPTPAY_ACCOUNT_NAME || 'ใส่ชื่อบัญชีของคุณ'
-const PROMPTPAY_QR_PATH = process.env.NEXT_PUBLIC_PROMPTPAY_QR_PATH
+import type { InvitationConfig } from '@/lib/invitation-config'
 
 function seededRandom(seed: number) {
   let value = seed
@@ -31,9 +28,11 @@ interface FallenLeaf {
 
 interface BodyInvitationProps {
   encryptedName?: string
+  config: InvitationConfig
 }
 
-export default function BodyInvitation({ encryptedName }: BodyInvitationProps) {
+export default function BodyInvitation({ encryptedName, config }: BodyInvitationProps) {
+  const { mapLink, cardFrontImage, cardBackImage, promptPayAccountName, promptPayQrPath } = config
   const [isOpen, setIsOpen] = useState(false)
   const vinylPlayerRef = useRef<VinylPlayerRef>(null)
   const [fallenLeaves, setFallenLeaves] = useState<FallenLeaf[]>([])
@@ -503,10 +502,11 @@ export default function BodyInvitation({ encryptedName }: BodyInvitationProps) {
           onOpen={() => setIsOpen(true)}
           onEnvelopeClick={handleEnvelopeClick}
           encryptedName={encryptedName}
+          cardImage={cardFrontImage}
         />
       ) : (
         <div className="space-y-0">
-          <CardInvitation />
+          <CardInvitation cardFrontImage={cardFrontImage} cardBackImage={cardBackImage} />
           {/* <CoupleSection /> */}
           {/* <GallerySection /> */}
         </div>
@@ -514,7 +514,7 @@ export default function BodyInvitation({ encryptedName }: BodyInvitationProps) {
 
       <VinylPlayer ref={vinylPlayerRef} isMiniMode={isOpen} />
 
-      {PROMPTPAY_QR_PATH && (
+      {promptPayQrPath && (
         <button
           onClick={() => setShowPromptPayModal(true)}
           className="flex fixed bottom-14 right-14 md:bottom-6 md:right-14 lg:right-20 z-50 w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full bg-white/90 hover:bg-white backdrop-blur-sm shadow-lg border-2 border-[#0066CC]/30 hover:border-[#0066CC] transition-all duration-300 items-center justify-center group hover:scale-110"
@@ -526,9 +526,9 @@ export default function BodyInvitation({ encryptedName }: BodyInvitationProps) {
       )}
 
       <a
-        href={MAP_LINK}
-        target={MAP_LINK === '#' ? undefined : '_blank'}
-        rel={MAP_LINK === '#' ? undefined : 'noopener noreferrer'}
+        href={mapLink}
+        target={mapLink === '#' ? undefined : '_blank'}
+        rel={mapLink === '#' ? undefined : 'noopener noreferrer'}
         className="flex fixed bottom-14 right-1 md:bottom-6 md:right-1 z-50 w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full bg-white/90 hover:bg-white backdrop-blur-sm shadow-lg border-2 border-[#D4AF37]/30 hover:border-[#D4AF37] transition-all duration-300 items-center justify-center group hover:scale-110"
         aria-label="เปิด Google Maps - ใส่ลิงก์ของคุณ"
         title="เปิด Google Maps (ใส่ลิงก์ของคุณ)"
@@ -542,7 +542,7 @@ export default function BodyInvitation({ encryptedName }: BodyInvitationProps) {
         </svg>
       </a>
 
-      {PROMPTPAY_QR_PATH && showPromptPayModal && (
+      {promptPayQrPath && showPromptPayModal && (
         <div
           className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 animate-fadeIn"
           onClick={() => setShowPromptPayModal(false)}
@@ -567,11 +567,11 @@ export default function BodyInvitation({ encryptedName }: BodyInvitationProps) {
                   <p className="text-[#6b7280] text-sm text-center px-4">
                     ใส่รูป QR Code ของคุณ
                     <br />
-                    (public{PROMPTPAY_QR_PATH})
+                    (public{promptPayQrPath})
                   </p>
                 )}
                 <img
-                  src={PROMPTPAY_QR_PATH}
+                  src={promptPayQrPath}
                   alt="PromptPay QR Code"
                   className={`absolute inset-0 w-full h-full object-contain ${promptPayQrLoaded ? 'opacity-100' : 'opacity-0'}`}
                   onLoad={() => setPromptPayQrLoaded(true)}
@@ -581,7 +581,7 @@ export default function BodyInvitation({ encryptedName }: BodyInvitationProps) {
             </div>
 
             <div className="text-center">
-              <p className="text-lg md:text-xl font-medium text-[#8B4513]">{PROMPTPAY_ACCOUNT_NAME}</p>
+              <p className="text-lg md:text-xl font-medium text-[#8B4513]">{promptPayAccountName}</p>
               <p className="text-xs text-[#8b7355] mt-1"> </p>
             </div>
           </div>

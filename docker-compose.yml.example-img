@@ -2,23 +2,23 @@ version: '3.8'
 
 services:
   app:
-    image: node:20-alpine
+    image: rawinby/ecard-web:latest
     container_name: ecard-web
-    working_dir: /app
     ports:
     - "3000:3000"
-    volumes:
-    - .:/app
-    - /app/node_modules
-    - /app/.next
     environment:
     - NODE_ENV=production
     - EVENT_TITLE=E-CARD
     - NEXT_PUBLIC_EVENT_DATE=2026-02-26 07:09:00
-    - CARD_FRONT_IMAGE=/images/card-front.png
-    - CARD_BACK_IMAGE=/images/card-back.png
+    - CARD_FRONT_IMAGE=
+    - CARD_BACK_IMAGE=https://www.dropbox.com/scl/fi/x67y76b4m7cswvw1z0d54/04.webp?rlkey=ntiwhzvog4y2rtxd7ah0ivjet&st=xsj0mpco&dl=1
     - MAP_LINK=https://maps.app.goo.gl/JhBVkAK6c84jbHHW8
     - PROMPTPAY_ACCOUNT_NAME=Your Name
     - PROMPTPAY_QR_PATH=/qrcode.jpg
-    command: sh -c "corepack enable && yarn install && yarn build && yarn start"
-    restart: unless-stopped
+    networks:
+    - server1_networks_app
+    restart: always
+
+networks:
+  server1_networks_app:
+    external: true

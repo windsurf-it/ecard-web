@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
     const encrypted = encryptBase64(name)
 
     // สร้าง URL พร้อมใช้
-    const origin = request.headers.get('origin') || process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+    const origin = request.headers.get('origin') || process.env.SITE_URL || 'http://localhost:3000'
     const invitationUrl = `${origin}/${encrypted}`
 
     return NextResponse.json({

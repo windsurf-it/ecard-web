@@ -17,22 +17,19 @@ const geist = Geist({
 })
 
 export const metadata: Metadata = {
-  title: `${process.env.NEXT_PUBLIC_EVENT_TITLE}`,
-  description: `${process.env.NEXT_PUBLIC_EVENT_TITLE}`,
+  title: `${process.env.EVENT_TITLE}`,
+  description: `${process.env.EVENT_TITLE}`,
   icons: {
     icon: '/favicon.png',
     shortcut: '/favicon.png',
     apple: '/favicon.png'
   },
   openGraph: {
-    title: `${process.env.NEXT_PUBLIC_EVENT_TITLE}`,
-    description: `${process.env.NEXT_PUBLIC_EVENT_TITLE}`,
+    title: `${process.env.EVENT_TITLE}`,
+    description: `${process.env.EVENT_TITLE}`,
     images: [
       {
-        url:
-          process.env.NEXT_PUBLIC_CARD_FRONT_IMAGE ||
-          process.env.NEXT_PUBLIC_CARD_BACK_IMAGE ||
-          '/images/card-front.png',
+        url: process.env.CARD_FRONT_IMAGE || process.env.CARD_BACK_IMAGE || '/images/card-front.png',
         width: 1200,
         height: 630,
         alt: 'Invitation'
@@ -45,9 +42,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Invitation',
     description: '',
-    images: [
-      process.env.NEXT_PUBLIC_CARD_FRONT_IMAGE || process.env.NEXT_PUBLIC_CARD_BACK_IMAGE || '/images/card-front.png'
-    ]
+    images: [process.env.CARD_FRONT_IMAGE || process.env.CARD_BACK_IMAGE || '/images/card-front.png']
   }
 }
 

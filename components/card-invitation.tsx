@@ -3,12 +3,15 @@
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 
-export default function CardInvitation() {
+interface CardInvitationProps {
+  cardFrontImage: string
+  cardBackImage: string
+}
+
+export default function CardInvitation({ cardFrontImage, cardBackImage }: CardInvitationProps) {
   const [isVisible, setIsVisible] = useState(false)
-  const [cardFront, setCardFront] = useState<string>(
-    process.env.NEXT_PUBLIC_CARD_FRONT_IMAGE || process.env.NEXT_PUBLIC_CARD_BACK_IMAGE || '/images/card-front.png'
-  )
-  const [cardBack, setCardBack] = useState<string>(process.env.NEXT_PUBLIC_CARD_BACK_IMAGE || '/images/card-back.png')
+  const [cardFront, setCardFront] = useState<string>(cardFrontImage)
+  const [cardBack, setCardBack] = useState<string>(cardBackImage)
 
   useEffect(() => {
     setIsVisible(true)
