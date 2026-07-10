@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 
-export function CardInvitation() {
+export default function CardInvitation() {
   const [isVisible, setIsVisible] = useState(false)
   const [cardFront, setCardFront] = useState<string>(
     process.env.NEXT_PUBLIC_CARD_FRONT_IMAGE || process.env.NEXT_PUBLIC_CARD_BACK_IMAGE || '/images/card-front.png'

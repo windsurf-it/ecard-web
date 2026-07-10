@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { EnvelopeSection } from './envelope-section'
-import { CardInvitation } from './card-invitation'
+import CardInvitation from './card-invitation'
 import { GallerySection } from './gallery-section'
 import { VinylPlayer, type VinylPlayerRef } from './vinyl-player'
 import { CoupleSection } from './couple-section'
