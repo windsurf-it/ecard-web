@@ -7,7 +7,7 @@ VERSION=${1:-latest}
 # cleanup function เมื่อมี interrupt
 cleanup() {
   echo ""
-  echo "⚠️  Build interrupted!"
+  echo "[!] Build interrupted!"
   echo "Cleaning up multi-builder..."
   docker buildx rm multi-builder 2>/dev/null || true
   exit 1
@@ -41,10 +41,10 @@ echo "Cleaning up multi-builder..."
 docker buildx rm multi-builder 2>/dev/null || true
 
 if [ $BUILD_STATUS -eq 0 ]; then
-  echo "✅ Build completed successfully!"
+  echo "[OK] Build completed successfully!"
   echo "Image: $IMAGE:$VERSION"
 else
-  echo "❌ Build failed!"
+  echo "[ERROR] Build failed!"
   exit 1
 fi
 
