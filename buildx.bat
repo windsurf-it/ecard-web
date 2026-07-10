@@ -4,6 +4,13 @@ cd "$(dirname "$0")"
 IMAGE=rawinby/ecard-web
 VERSION=${1:-latest}
 
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "Building Docker Image"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "IMAGE:    $IMAGE:$VERSION"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo ""
+
 # สร้าง builder สำหรับ multi-platform
 docker buildx create --use --name multi-builder
 
