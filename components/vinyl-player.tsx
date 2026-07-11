@@ -170,7 +170,7 @@ export const VinylPlayer = forwardRef<VinylPlayerRef, VinylPlayerProps>(
                 <div className="flex items-center gap-1.5 flex-shrink-0">
                   <button
                     onClick={togglePlay}
-                    className="w-8 h-8 rounded-full bg-gradient-to-br from-[#FFB6C1] to-[#FF91A4] hover:from-[#FF91A4] hover:to-[#FF7A8F] transition-all flex items-center justify-center text-white shadow-md hover:shadow-lg"
+                    className="w-8 h-8 rounded-full bg-gradient-to-br from-[#5C3626] to-[#5C3626] hover:from-[#5C3626] hover:to-[#5C3626] transition-all flex items-center justify-center text-white shadow-md hover:shadow-lg"
                     aria-label={isPlaying ? 'Pause' : 'Play'}
                   >
                     {isPlaying ? (
@@ -265,7 +265,7 @@ export const VinylPlayer = forwardRef<VinylPlayerRef, VinylPlayerProps>(
             </div>
           </>
         ) : (
-          <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-20 pointer-events-auto">
+          <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 pointer-events-auto">
             <div className="relative flex flex-col items-center">
               <div
                 className="relative w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-full bg-gradient-to-br from-[#2C2C2C] via-[#1A1A1A] to-[#0A0A0A] shadow-2xl border-4 border-[#3A3A3A] cursor-pointer hover:shadow-2xl transition-shadow"
