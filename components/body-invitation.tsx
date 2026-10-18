@@ -87,7 +87,7 @@ export default function BodyInvitation({ encryptedName, config }: BodyInvitation
   ]
 
   useEffect(() => {
-    const imagesToLoad = ['/bg-autumnal.jpg', ...mapleLeafImages]
+    const imagesToLoad = ['/bg-autumnal.webp', ...mapleLeafImages]
 
     let loadedCount = 0
     const totalImages = imagesToLoad.length
@@ -142,7 +142,7 @@ export default function BodyInvitation({ encryptedName, config }: BodyInvitation
             <div
               className="absolute inset-0 bg-cover bg-center bg-no-repeat"
               style={{
-                backgroundImage: "url('/bg-autumnal.jpg')"
+                backgroundImage: "url('/bg-autumnal.webp')"
               }}
             />
           </div>
@@ -394,7 +394,7 @@ export default function BodyInvitation({ encryptedName, config }: BodyInvitation
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{
-              backgroundImage: "url('/bg-autumnal.jpg')"
+              backgroundImage: "url('/bg-autumnal.webp')"
             }}
           />
         </div>
