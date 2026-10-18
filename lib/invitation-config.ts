@@ -4,6 +4,7 @@ export interface InvitationConfig {
   cardBackImage: string
   promptPayAccountName: string
   promptPayQrPath: string
+  musicUrl: string
 }
 
 // อ่านค่าตอน request บน server เท่านั้น - ห้าม import ไฟล์นี้จาก 'use client' component
@@ -15,6 +16,8 @@ export function getInvitationConfig(): InvitationConfig {
     cardFrontImage: process.env.CARD_FRONT_IMAGE || process.env.CARD_BACK_IMAGE || '/images/card-front.png',
     cardBackImage: process.env.CARD_BACK_IMAGE || '/images/card-back.png',
     promptPayAccountName: process.env.PROMPTPAY_ACCOUNT_NAME || 'ใส่ชื่อบัญชีของคุณ',
-    promptPayQrPath: process.env.PROMPTPAY_QR_PATH || ''
+    promptPayQrPath: process.env.PROMPTPAY_QR_PATH || '',
+    // URL เพลงพื้นหลัง - ใส่ได้ทั้ง path ใน public (/music/xxx.mp3) หรือ URL เต็ม (https://...)
+    musicUrl: process.env.MUSIC_URL || '/music/card-music.mp3'
   }
 }

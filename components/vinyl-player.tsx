@@ -12,12 +12,14 @@ export interface VinylPlayerRef {
 }
 
 interface VinylPlayerProps {
+  // URL ของไฟล์เพลง (relative path ใน public หรือ absolute URL ก็ได้)
+  src: string
   onPlayStateChange?: (isPlaying: boolean) => void
   isMiniMode?: boolean
 }
 
 export const VinylPlayer = forwardRef<VinylPlayerRef, VinylPlayerProps>(
-  ({ onPlayStateChange, isMiniMode = false }, ref) => {
+  ({ src, onPlayStateChange, isMiniMode = false }, ref) => {
     const audioRef = useRef<HTMLAudioElement>(null)
     const [isPlaying, setIsPlaying] = useState(false)
     const [isMuted, setIsMuted] = useState(false)
@@ -109,8 +111,10 @@ export const VinylPlayer = forwardRef<VinylPlayerRef, VinylPlayerProps>(
 
     return (
       <>
+        {/* ใช้ src บน <audio> ตรงๆ แทน <source type="audio/mpeg"> เพื่อให้รองรับไฟล์จาก URL ได้ทุกนามสกุล (mp3/m4a/ogg) */}
         <audio
           ref={audioRef}
+          src={src}
           loop
           preload="auto"
           onPlay={() => {
@@ -122,7 +126,6 @@ export const VinylPlayer = forwardRef<VinylPlayerRef, VinylPlayerProps>(
             setIsPlaying(false)
           }}
         >
-          <source src="/music/card-music.mp3" type="audio/mpeg" />
           Your browser does not support the audio element.
         </audio>
 

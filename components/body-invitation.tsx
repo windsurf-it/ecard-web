@@ -32,7 +32,7 @@ interface BodyInvitationProps {
 }
 
 export default function BodyInvitation({ encryptedName, config }: BodyInvitationProps) {
-  const { mapLink, cardFrontImage, cardBackImage, promptPayAccountName, promptPayQrPath } = config
+  const { mapLink, cardFrontImage, cardBackImage, promptPayAccountName, promptPayQrPath, musicUrl } = config
   const [isOpen, setIsOpen] = useState(false)
   const vinylPlayerRef = useRef<VinylPlayerRef>(null)
   const [fallenLeaves, setFallenLeaves] = useState<FallenLeaf[]>([])
@@ -512,7 +512,7 @@ export default function BodyInvitation({ encryptedName, config }: BodyInvitation
         </div>
       )}
 
-      <VinylPlayer ref={vinylPlayerRef} isMiniMode={isOpen} />
+      <VinylPlayer ref={vinylPlayerRef} src={musicUrl} isMiniMode={isOpen} />
 
       {promptPayQrPath && (
         <button
